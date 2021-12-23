@@ -81,8 +81,29 @@ class AsignacionArreglo extends instruccion_1.Instruccion {
         index_1.errores.agregar(new Error_1.Error('Semantico', `Tipos incompatibles, ${valor.tipo} no se puede convertir a ${tipo}`, this.linea, this.columna, entorno));
         index_1.consola.actualizar(`Tipos incompatibles, ${valor.tipo} no se puede convertir a ${tipo} l:${this.linea}, c:${this.columna}\n`);
     }
+    generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
     ast(metodos) {
-        return null;
+        const id = this.generateUUID();
+        const indice = this.indice.ast(metodos);
+        const valor = this.valor.ast(metodos);
+        index_1.nodosAst.push({
+            id: id, label: this.id
+        });
+        index_1.nodosAst.push({
+            id: indice.id, label: indice.ast
+        });
+        index_1.nodosAst.push({
+            id: valor.id, label: valor.ast
+        });
+        return { id, ast: this.id };
     }
 }
 exports.AsignacionArreglo = AsignacionArreglo;

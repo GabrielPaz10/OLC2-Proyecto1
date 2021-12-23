@@ -54,8 +54,22 @@ class Print extends instruccion_1.Instruccion {
             }
         }
     }
+    generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
     ast(metodos) {
-        return null;
+        const id = this.generateUUID();
+        const value = this.expresiones[0].ast(metodos);
+        index_1.nodosAst.push({ id: id, label: this.banderaS ? "println" : "print" });
+        index_1.nodosAst.push({ id: value.id, label: value.ast });
+        index_1.aristasAst.push({ from: id, to: value.id });
+        return { id: id, ast: this.banderaS ? "println" : "print" };
     }
 }
 exports.Print = Print;

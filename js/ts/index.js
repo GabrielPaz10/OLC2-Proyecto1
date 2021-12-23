@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtenerMain = exports.ejecutar = exports.instruccionesR = exports.gramatical = exports.simbolos = exports.errores = exports.consola = void 0;
+exports.obtenerMain = exports.ejecutar = exports.generarAst = exports.aristasAst = exports.nodosAst = exports.instruccionesR = exports.gramatical = exports.simbolos = exports.errores = exports.consola = void 0;
 const Consola_1 = require("./Reportes/Consola");
 const TablaError_1 = require("./Reportes/TablaError");
 const TablaMetodos_1 = require("./Reportes/TablaMetodos");
@@ -20,6 +20,8 @@ exports.errores = new TablaError_1.TablaError();
 exports.simbolos = new TablaSimbolos_1.TablaSimbolo([]);
 exports.gramatical = [];
 exports.instruccionesR = [];
+exports.nodosAst = [];
+exports.aristasAst = [];
 const analizador = require('../analizador/analizador.js');
 let main = [];
 let metodos;
@@ -29,6 +31,9 @@ function limpiarTodo() {
     exports.errores.vaciar();
     exports.simbolos.limpiar();
 }
+function generarAst() {
+}
+exports.generarAst = generarAst;
 function ejecutar(entrada) {
     limpiarTodo();
     const tsGlobal = new TablaSimbolos_1.TablaSimbolo([]);
@@ -52,6 +57,7 @@ function obtenerAst(ast, tsGlobal, metodos) {
         try {
             if (instruction instanceof instruccion_1.Instruccion || instruction instanceof expresion_1.Expresion)
                 instruction.ejecutar(tsGlobal, tsGlobal, metodos, "-");
+            instruction.ast(metodos);
         }
         catch (error) {
             if (error instanceof Error_1.Error)

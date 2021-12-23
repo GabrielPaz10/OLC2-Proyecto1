@@ -36,7 +36,7 @@ function limpiarTodo(){
     simbolos.limpiar()
 }
 export function generarAst(){
-    
+
 }
 export function ejecutar(entrada:string):string{
     limpiarTodo()
@@ -59,6 +59,7 @@ function obtenerAst(ast:any, tsGlobal:TablaSimbolo,metodos:TablaMetodos){
         try {
             if(instruction instanceof Instruccion || instruction instanceof Expresion)
                 instruction.ejecutar(tsGlobal, tsGlobal, metodos, "-")
+                instruction.ast(metodos)
         } catch (error) {
             if(error instanceof Error) errores.agregar(error)
         }

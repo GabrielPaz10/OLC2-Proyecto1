@@ -1,6 +1,5 @@
 const { ejecutar, errores, simbolos } = require("./ts/index")
-var {gramatical,instruccionesR}= require('./ts/index')
-
+var {gramatical,instruccionesR, nodosAst, aristasAst}= require('./ts/index')
 
 const bejecutar = document.getElementById('ejecutar')
 const consolaa = document.getElementById('consola')
@@ -10,6 +9,7 @@ const btnerrores = document.getElementById('errores')
 const btngramatical = document.getElementById('gramatica')
 const btntablasimbolos = document.getElementById('tabla')
 const blimpiar = document.getElementById('borrar')
+const btnAST = document.getElementById('ast')
 
 
 blimpiar.addEventListener('click',()=>{
@@ -45,6 +45,48 @@ btngramatical.addEventListener('click',()=>{
     areagra.value= gramatical.join('\n')
     instruccioness.value= instruccionesR.join('\n')
 
+})
+btnAST.addEventListener('click',()=>{
+    var nodes = new vis.DataSet (nodosAst)
+    var edges = new vis.DataSet (aristasAst)
+
+        var options = {
+                width:  '1000px',
+                height: '800px',
+                style: 'surface',
+                showPerspective: true,
+                showGrid: true,
+                showShadow: true,
+                showAnimationControls: true,
+                keepAspectRatio: true,
+                verticalRatio: 0.5,
+                animationInterval: 100, // milliseconds
+                animationPreload: true,
+                filterValue: 'time',
+                nodes:{// Control de nodos
+                    // shape: 'dot',
+                    
+                    borderWidth: 3,//Ajuste de ancho de borde de nodo
+                    borderWidthSelected: 10,//Haga clic en la configuración de ancho cuando esté seleccionado,
+                    color:  {
+                        border: 'green',//Configuración de color del borde
+                        background: '#F6DDCC'
+                    },
+                },
+                edges:{//Control de la relación
+                    width:2,//Ancho de línea de relación
+                    arrows:{//Flecha
+                        to:{enabled:true,//Si la flecha se muestra y se enciende
+                            scaleFactor:0.5,//Tamaño de la flecha
+                            type:'arrow',//Tipos de flechas: círculo, barra, flechas.
+                        },
+                    },
+                },
+    
+            };
+        var container = document.getElementById('grafo'); 
+        var data = { nodes: nodes, edges: edges }; 
+        var network = new vis.Network(container, data, options);
 })
 
 function generarTablaErrores() {

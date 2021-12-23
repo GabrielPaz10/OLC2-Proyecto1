@@ -4,7 +4,7 @@ import { TablaMetodos } from '../../Reportes/TablaMetodos';
 import { TablaSimbolo } from '../../Reportes/TablaSimbolos';
 import { Nodo, Valor, Tipos, Intervalo } from '../../tiposD/Tipos';
 import { Simbolo } from '../../Reportes/Simbolo';
-import { consola, errores, simbolos } from '../../index';
+import { consola, errores, simbolos, nodosAst, aristasAst } from '../../index';
 import { Error } from '../../Reportes/Error';
 export class Asignacion extends Instruccion{
     private id:string
@@ -57,8 +57,28 @@ export class Asignacion extends Instruccion{
         errores.agregar(new Error('Semantico',`Tipos incompatibles, ${valor.tipo} no se puede convertir a ${tipo}`,this.linea,this.columna,entorno))
         consola.actualizar(`Tipos incompatibles, ${valor.tipo} no se puede convertir a ${tipo} l:${this.linea}, c:${this.columna}\n`)
     }
+    public generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
     public ast(metodos: TablaMetodos): Nodo {
-        return null
+        const id = this.generateUUID();
+        const valor= this.valor.ast(metodos);
+        nodosAst.push({
+            id:id, label:this.id
+        })
+        nodosAst.push({
+            id:valor.id, label:valor.ast
+        })
+        aristasAst.push({
+            from:id, to:valor.id
+        })
+        return {id, ast:this.id}
     }
     
 }

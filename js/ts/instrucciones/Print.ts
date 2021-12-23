@@ -1,4 +1,4 @@
-import { consola, errores } from "../index";
+import { consola, errores, nodosAst, aristasAst } from '../index';
 import { Expresion } from "../abstractas/expresion";
 import { Instruccion } from "../abstractas/instruccion";
 import { Consola } from "../Reportes/Consola";
@@ -54,8 +54,22 @@ export class Print extends Instruccion{
             }
         }
     }
+    public generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
     public ast(metodos: TablaMetodos): Nodo {//hola aby 
-        return null
+        const id = this.generateUUID();
+        const value = this.expresiones[0].ast(metodos);
+        nodosAst.push({id:id, label:this.banderaS?"println":"print"})
+        nodosAst.push({id:value.id, label:value.ast})
+        aristasAst.push({from:id, to:value.id})
+        return {id:id, ast:this.banderaS?"println":"print"}
     }
     
 }
