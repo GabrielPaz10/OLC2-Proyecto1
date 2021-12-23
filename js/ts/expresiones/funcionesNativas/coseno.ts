@@ -2,7 +2,7 @@ import { consola, errores } from '../../index';
 import { Expresion } from '../../abstractas/expresion';
 import { Error } from '../../Reportes/Error';
 import { TablaMetodos } from '../../Reportes/TablaMetodos';
-import { TablaSimbolo } from '../../Reportes/TabaSimbolos';
+import { TablaSimbolo } from '../../Reportes/TablaSimbolos';
 import { Valor, Nodo, Tipos } from '../../tiposD/Tipos';
 export class Cos extends Expresion{
     private angulo:Expresion

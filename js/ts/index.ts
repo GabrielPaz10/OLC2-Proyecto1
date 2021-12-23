@@ -2,7 +2,7 @@ import { Consola } from './Reportes/Consola';
 import { TablaError } from './Reportes/TablaError';
 import { Metodo } from './Reportes/Metodo';
 import { TablaMetodos } from './Reportes/TablaMetodos';
-import { TablaSimbolo } from './Reportes/TabaSimbolos';
+import { TablaSimbolo } from './Reportes/TablaSimbolos';
 import { Instruccion } from './abstractas/instruccion';
 import { Error } from './Reportes/Error';
 import { TiposControl, Valor } from './tiposD/Tipos';
