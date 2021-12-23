@@ -89,6 +89,7 @@ btnAST.addEventListener('click',()=>{
         var network = new vis.Network(container, data, options);
 })
 
+
 function generarTablaErrores() {
      var div = document.getElementById("tablaerrores");
      div.innerHTML = "";
