@@ -47,46 +47,57 @@ btngramatical.addEventListener('click',()=>{
 
 })
 btnAST.addEventListener('click',()=>{
-    var nodes = new vis.DataSet (nodosAst)
-    var edges = new vis.DataSet (aristasAst)
+    var nodes = new vis.DataSet ([ 
+        {id: 1, label: 'init'}, 
+        {id: 2, label: 'completo'}, 
+        {id: 3, label: 'EOF'}, 
+        {id: 4, label: 'completo'}, 
+        {id: 5, label: 'global'} 
+        ]); 
+    // create an array with edges 
+    var edges = new vis.DataSet ([ 
+        {from: 1, to: 2}, 
+        {from: 1, to: 3}, 
+        {from: 2, to: 4}, 
+        {from: 2, to: 5} ]); 
 
-        var options = {
-                width:  '1000px',
-                height: '800px',
-                style: 'surface',
-                showPerspective: true,
-                showGrid: true,
-                showShadow: true,
-                showAnimationControls: true,
-                keepAspectRatio: true,
-                verticalRatio: 0.5,
-                animationInterval: 100, // milliseconds
-                animationPreload: true,
-                filterValue: 'time',
-                nodes:{// Control de nodos
-                    // shape: 'dot',
-                    
-                    borderWidth: 3,//Ajuste de ancho de borde de nodo
-                    borderWidthSelected: 10,//Haga clic en la configuración de ancho cuando esté seleccionado,
-                    color:  {
-                        border: 'green',//Configuración de color del borde
-                        background: '#F6DDCC'
-                    },
+    var options = {
+        width:  '1000px',
+        height: '800px',
+        //style: 'surface',
+        showPerspective: true,
+        showGrid: true,
+        showShadow: true,
+        showAnimationControls: true,
+        keepAspectRatio: true,
+        verticalRatio: 0.5,
+        animationInterval: 100, // milliseconds
+        animationPreload: true,
+        filterValue: 'time',
+        nodes:{// Control de nodos
+            // shape: 'dot',
+            
+            borderWidth: 3,//Ajuste de ancho de borde de nodo
+            borderWidthSelected: 10,//Haga clic en la configuración de ancho cuando esté seleccionado,
+            color:  {
+                border: 'green',//Configuración de color del borde
+                background: '#F6DDCC'
+            },
+        },
+        edges:{//Control de la relación
+            width:2,//Ancho de línea de relación
+            arrows:{//Flecha
+                to:{enabled:true,//Si la flecha se muestra y se enciende
+                    scaleFactor:0.5,//Tamaño de la flecha
+                    type:'arrow',//Tipos de flechas: círculo, barra, flechas.
                 },
-                edges:{//Control de la relación
-                    width:2,//Ancho de línea de relación
-                    arrows:{//Flecha
-                        to:{enabled:true,//Si la flecha se muestra y se enciende
-                            scaleFactor:0.5,//Tamaño de la flecha
-                            type:'arrow',//Tipos de flechas: círculo, barra, flechas.
-                        },
-                    },
-                },
-    
-            };
-        var container = document.getElementById('grafo'); 
-        var data = { nodes: nodes, edges: edges }; 
-        var network = new vis.Network(container, data, options);
+            },
+        }
+
+    }
+    var container = document.getElementById('grafo'); 
+    var data = { nodes: nodes, edges: edges }; 
+    var network = new vis.Network(container, data, options);
 })
 
 
