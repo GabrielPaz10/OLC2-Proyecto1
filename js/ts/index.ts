@@ -23,6 +23,8 @@ export const errores = new TablaError()
 export const simbolos = new TablaSimbolo([])
 export let gramatical= []
 export let instruccionesR = []
+export let nodosAst = []
+export let aristasAst = []
 const analizador = require('../analizador/analizador.js')
 let main :any[]=[]
 let metodos:TablaMetodos
@@ -32,6 +34,9 @@ function limpiarTodo(){
     consola.limpiar()
     errores.vaciar()
     simbolos.limpiar()
+}
+export function generarAst(){
+    
 }
 export function ejecutar(entrada:string):string{
     limpiarTodo()
