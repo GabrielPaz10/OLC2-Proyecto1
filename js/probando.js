@@ -15,13 +15,13 @@ const blimpiar = document.getElementById('borrar')
 blimpiar.addEventListener('click',()=>{
     errores.vaciar()
     simbolos.limpiar()
-    gramatical.forEach(()=>{
-        gramatical.pop()
-    })
     
-    instruccionesR.forEach(()=>{
+    for(var i in gramatical){
+        gramatical.pop()
+    }
+    for(var i in instruccionesR){
         instruccionesR.pop()
-    })
+    }
 })
 
 bejecutar.addEventListener('click',()=>{
