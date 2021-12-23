@@ -1,6 +1,6 @@
 import { Instruccion } from '../../abstractas/instruccion';
 import { TablaMetodos } from '../../Reportes/TablaMetodos';
-import { TablaSimbolo } from '../../Reportes/TabaSimbolos';
+import { TablaSimbolo } from '../../Reportes/TablaSimbolos';
 import { Nodo, Tipos } from '../../tiposD/Tipos';
 import { Simbolo } from '../../Reportes/Simbolo';
 import { consola, errores, simbolos } from '../../index';

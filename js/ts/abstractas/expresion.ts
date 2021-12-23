@@ -1,4 +1,4 @@
-import { TablaSimbolo } from '../Reportes/TabaSimbolos';
+import { TablaSimbolo } from '../Reportes/TablaSimbolos';
 import { TablaMetodos } from '../Reportes/TablaMetodos';
 import { Nodo, Valor } from '../tiposD/Tipos';
 

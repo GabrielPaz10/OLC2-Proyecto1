@@ -1,5 +1,5 @@
 import { TablaMetodos } from '../Reportes/TablaMetodos';
-import { TablaSimbolo } from '../Reportes/TabaSimbolos';
+import { TablaSimbolo } from '../Reportes/TablaSimbolos';
 import { Nodo } from '../tiposD/Tipos';
 
 
