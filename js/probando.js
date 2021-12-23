@@ -9,9 +9,15 @@ const instruccioness = document.getElementById('instrucciones')
 const btnerrores = document.getElementById('errores')
 const btngramatical = document.getElementById('gramatica')
 const btntablasimbolos = document.getElementById('tabla')
+const blimpiar = document.getElementById('borrar')
 
 
-
+blimpiar.addEventListener('click',()=>{
+    errores.vaciar()
+    simbolos.limpiar()
+    gramatical=[]
+    instruccionesR=[]
+})
 
 bejecutar.addEventListener('click',()=>{
     const entrada=document.getElementById("entrada").value
